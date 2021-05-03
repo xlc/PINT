@@ -17,7 +17,7 @@ mod tests;
 pub mod pallet {
     use frame_support::{
         dispatch::DispatchResultWithPostInfo, pallet_prelude::*,
-        sp_runtime::traits::AtLeast32BitUnsigned,
+        sp_runtime::traits::AtLeast32BitUnsigned, sp_std::prelude::*,
     };
     use frame_system::pallet_prelude::*;
     use pallet_asset_index::traits::{AssetAvailability, AssetRecorder};
@@ -59,6 +59,7 @@ pub mod pallet {
     >;
 
     #[pallet::event]
+    #[pallet::metadata(T::AssetId = "AssetId", T::Balance = "Balance")]
     #[pallet::generate_deposit(pub(super) fn deposit_event)]
     pub enum Event<T: Config> {
         /// A new SAFT was added
